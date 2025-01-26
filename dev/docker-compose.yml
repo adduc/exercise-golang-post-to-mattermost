@@ -30,7 +30,7 @@ services:
       MM_BLEVESETTINGS_INDEXDIR: /mattermost/bleve-indexes
 
       # additional settings
-      MM_SERVICESETTINGS_SITEURL: https://127.0.0.1:8065
+      MM_SERVICESETTINGS_SITEURL: http://127.0.0.1:8065
 
 
   postgres:
