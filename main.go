@@ -27,9 +27,6 @@ import (
 
   Environment Variables:
     - WEBHOOK_URL: the URL of the incoming webhook
-
-  Links:
-    - https://developers.mattermost.com/integrate/webhooks/incoming/#parameters
 */
 
 // loadEnv loads the .env file if it exists
@@ -56,6 +53,11 @@ func createHttpClient() *http.Client {
 	return client
 }
 
+// @see https://developers.mattermost.com/integrate/webhooks/incoming/#parameters
+type Payload struct {
+	Text string `json:"text"`
+}
+
 // postMessage posts a message to the mattermost incoming webhook
 func postMessage(client *http.Client, webhookURL string) {
 	// create a new request
@@ -66,11 +68,6 @@ func postMessage(client *http.Client, webhookURL string) {
 
 	// set the content type
 	req.Header.Set("Content-Type", "application/json")
-
-	// define the payload struct
-	type Payload struct {
-		Text string `json:"text"`
-	}
 
 	// create the payload
 	payload := Payload{
